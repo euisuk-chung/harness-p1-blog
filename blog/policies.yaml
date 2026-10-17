@@ -23,6 +23,9 @@ deny_commands:
   - "rm -rf"
   - "--no-verify"
   - "sudo "
+  # 되돌릴 수 없는 일은 사람이 한다 — PR 합치기와 본줄기에 바로 올리기 (11차시)
+  - "gh pr merge"
+  - "git push origin main"
 
 # Bash 로 실행해도 되는 명령의 머리. 이 밖은 막는다.
 allow_commands:

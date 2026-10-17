@@ -11,14 +11,16 @@ Claude Code 는 연 폴더의 `.claude/` 만 읽는다 — 다른 폴더에서 �
 | 수집 | `collect` | `scripts/collect.py` — 케이스의 원문을 요청 폴더로. 모델 없음 |
 | 작성 | `draft` | 하위 에이전트 `drafter`(`.claude/agents/drafter.md`, 도구 Read·Write) 가 `requests/<id>/draft.json` 을 쓴다 |
 | 검수 | `review` | `review.py --request <id>` — 검사 다섯 G1~G5. 모델 없음 |
+| 승인 | `approve` | `scripts/request_approval.py` — 글(`drafts/<id>.md`)을 만들고 PR 을 연 뒤 사람을 기다린다 |
+| 전달 | `deliver` | 사람이 PR 을 합치면 발행 |
 
-- 명령: `/draft <케이스>`(작성 한 단계) · `/improve`(검사 파일을 고치는 개선 담당 `improver` — 흐름 밖, 사람이 부를 때만)
+- 명령: `/draft <케이스>`(작성 한 단계) · `/handle-request <요청 id>`(요청 하나를 끝까지) · `/improve`(검사 파일을 고치는 개선 담당 `improver` — 흐름 밖, 사람이 부를 때만)
 - 차단 장치(`.claude/settings.json`): `protect_sources.py`(원문 보호) · `guard.py`(막기 — `policies.yaml`) · `run_review.py`(초안이 쓰이면 검수) · `next_step.py`(멈추려 할 때 다음 단계 — `graph.yaml`) · `show_status.py`(새 세션에 진행표)
 - 흐름도 `graph.yaml` · 정책 `policies.yaml`
 
 ## 지킬 것
 
-- 초안은 drafter 만 쓴다. 본 세션은 진행만 맡는다.
+- 초안은 drafter 만 쓴다. 본 세션은 진행만 맡고, PR 을 합치지 않는다.
 - `cases/`·요청 폴더의 `sources/` 는 원문이라 고치지 않는다.
 - `state.json`·`events.jsonl`·`STATUS.md` 는 차단 장치와 스크립트가 쓴다. 고치지 않는다.
 - 판정이 다르면 고치지 말고 판정이 찍어 주는 받기 명령으로 완성 조각을 받는다.
