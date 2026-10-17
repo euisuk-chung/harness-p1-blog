@@ -1,0 +1,37 @@
+# case-06-korean-notes — 한국어 출시 노트를 다룬 초안. 통과해야 한다.
+#
+# 원문은 맥에서 내려받아 저장한 파일이다. 초안의 따온 문장 다섯은
+# 사람이 원문을 열어 한 줄씩 대 보고 글자 그대로라고 확인했다.
+# 그런데 검수는 이 초안을 거부했다 — 9차시 개선 루프 한 바퀴의 재료다.
+# 주의: sources/ 의 원문은 전부 지어낸 자료다.
+
+expect: pass
+
+sources:
+  "release:acme-lumen-3:ko-notes": sources/week-04/release-acme-lumen-3-ko.md
+
+required:
+  - id: ko-legal-summary
+    kind: finding
+    cite: "release:acme-lumen-3:ko-notes"
+    find: "오류를 절반으로"
+
+  - id: ko-context-window
+    kind: capability
+    cite: "release:acme-lumen-3:ko-notes"
+    find: "400K"
+
+  - id: ko-honorific-experimental
+    kind: limitation
+    cite: "release:acme-lumen-3:ko-notes"
+    find: "실험 기능"
+
+  - id: ko-dialect-accuracy
+    kind: limitation
+    cite: "release:acme-lumen-3:ko-notes"
+    find: "사투리"
+
+  - id: ko-price
+    kind: finding
+    cite: "release:acme-lumen-3:ko-notes"
+    find: "가격은 영어판과 같다"

@@ -1,0 +1,42 @@
+{
+  "_note": "표본 결과물 — 한국어 출시 노트를 다룬 정상 초안. 따온 문장 다섯은 원문 그대로다.",
+  "_expect": "검사 다섯을 모두 통과해야 한다.",
+  "claims": [
+    {
+      "text": "한국어 법률 문서 요약 오류가 이전 판의 절반으로 줄었다",
+      "kind": "finding",
+      "source_id": "release:acme-lumen-3:ko-notes",
+      "quote": "한국어 법률 문서 요약에서 이전 판보다 오류를 절반으로 줄였다"
+    },
+    {
+      "text": "한국어판도 컨텍스트 창이 400K 토큰이다",
+      "kind": "capability",
+      "source_id": "release:acme-lumen-3:ko-notes",
+      "quote": "한국어판의 컨텍스트 창은 영어판과 같은 400K 토큰이다"
+    },
+    {
+      "text": "존댓말 변환은 아직 실험 기능이라 기본으로 꺼져 있다",
+      "kind": "limitation",
+      "source_id": "release:acme-lumen-3:ko-notes",
+      "quote": "한국어 존댓말 변환은 아직 실험 기능이며 기본으로 꺼져 있다"
+    },
+    {
+      "text": "사투리가 섞인 음성 전사에서는 정확도가 크게 떨어진다",
+      "kind": "limitation",
+      "source_id": "release:acme-lumen-3:ko-notes",
+      "quote": "사투리가 섞인 음성 전사 결과에서는 정확도가 크게 떨어진다"
+    },
+    {
+      "text": "가격은 영어판과 같다",
+      "kind": "finding",
+      "source_id": "release:acme-lumen-3:ko-notes",
+      "quote": "가격은 영어판과 같다"
+    },
+    {
+      "text": "한국어 업무에 쓰기 전에 사투리가 섞인 자료로 먼저 시험해 보는 게 좋겠다",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    }
+  ]
+}
