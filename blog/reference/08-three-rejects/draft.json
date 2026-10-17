@@ -1,0 +1,28 @@
+{
+  "claims": [
+    {
+      "text": "Lumen-3 모델 카드는 MMLU 88.2, GPQA-Diamond 71.4 점을 보고한다.",
+      "kind": "benchmark",
+      "source_id": "model:acme/lumen-3:card",
+      "quote": "Lumen-3 achieves 88.2 on MMLU and 71.4 on GPQA-Diamond."
+    },
+    {
+      "text": "새 연구는 계획 생성과 실행을 분리하는 staged deliberation 기법을 제안한다.",
+      "kind": "finding",
+      "source_id": "arxiv:2601.12345:abstract",
+      "quote": "We introduce staged deliberation, a method that separates plan generation from plan execution using an explicit intermediate artifact."
+    },
+    {
+      "text": "vLLM v0.9.0부터 generate()에 sampling_params 딕셔너리를 넘기면 더 이상 동작하지 않고 TypeError가 발생한다.",
+      "kind": "limitation",
+      "source_id": "release:vllm:v0.9.0",
+      "quote": "The `generate()` entrypoint no longer accepts a `sampling_params` dict. Callers\nmust pass a `SamplingParams` object. Passing a dict now raises TypeError."
+    },
+    {
+      "text": "staged deliberation과 대형 컨텍스트 모델이 함께 발전하면서 장기 추론 작업의 신뢰도가 앞으로 더 빠르게 개선될 것으로 보인다.",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    }
+  ]
+}

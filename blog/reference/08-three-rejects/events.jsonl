@@ -1,0 +1,36 @@
+{"n": 1, "event": "triggered", "trigger": "schedule:weekly:2026-W37", "case": "case-04-empty-source"}
+{"n": 2, "event": "step", "step": "collect", "signal": 0, "note": "collect: 원문 4건, 꼭 다룰 항목 5개"}
+{"n": 3, "event": "need", "step": "draft", "visit": 1}
+{"n": 4, "event": "tool", "tool": "Agent"}
+{"n": 5, "event": "tool", "tool": "Read"}
+{"n": 6, "event": "tool", "tool": "Read"}
+{"n": 7, "event": "tool", "tool": "Read"}
+{"n": 8, "event": "tool", "tool": "Read"}
+{"n": 9, "event": "tool", "tool": "Read"}
+{"n": 10, "event": "tool", "tool": "Write"}
+{"n": 11, "event": "step", "step": "draft", "signal": 0, "note": "draft.json c259b6344f7e"}
+{"n": 12, "event": "step", "step": "review", "signal": 1, "note": "review: G4 rejected — missed: lumen3-mmlu-score, team-notes-decision, team-notes-risk"}
+{"n": 13, "event": "need", "step": "draft", "visit": 2}
+{"n": 14, "event": "tool", "tool": "Agent"}
+{"n": 15, "event": "tool", "tool": "Read"}
+{"n": 16, "event": "tool", "tool": "Read"}
+{"n": 17, "event": "tool", "tool": "Read"}
+{"n": 18, "event": "tool", "tool": "Read"}
+{"n": 19, "event": "tool", "tool": "Read"}
+{"n": 20, "event": "tool", "tool": "Read"}
+{"n": 21, "event": "tool", "tool": "Read"}
+{"n": 22, "event": "tool", "tool": "Read"}
+{"n": 23, "event": "tool", "tool": "Read"}
+{"n": 24, "event": "tool", "tool": "Read"}
+{"n": 25, "event": "tool", "tool": "Write"}
+{"n": 26, "event": "step", "step": "draft", "signal": 0, "note": "draft.json 252c699a39d8"}
+{"n": 27, "event": "step", "step": "review", "signal": 1, "note": "review: G4 rejected — missed: team-notes-decision, team-notes-risk"}
+{"n": 28, "event": "need", "step": "draft", "visit": 3}
+{"n": 29, "event": "tool", "tool": "Agent"}
+{"n": 30, "event": "tool", "tool": "Read"}
+{"n": 31, "event": "tool", "tool": "Read"}
+{"n": 32, "event": "tool", "tool": "Read"}
+{"n": 33, "event": "tool", "tool": "Write"}
+{"n": 34, "event": "step", "step": "draft", "signal": 0, "note": "draft.json 252c699a39d8"}
+{"n": 35, "event": "step", "step": "review", "signal": 1, "note": "review: G4 rejected — missed: team-notes-decision, team-notes-risk"}
+{"n": 36, "event": "finished", "terminal": "needs_human", "reason": "'draft' 를 3번 했는데도 안 됐다"}

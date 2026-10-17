@@ -1,0 +1,37 @@
+# case-04-empty-source — 어떤 초안도 통과할 수 없는 케이스. 8차시에 실제 실행으로 "세 번 뒤 사람에게" 를 본다.
+#
+# 원문 하나(팀 메모 notes:team:week-02 — sources/week-02/empty-notes.md)를 비워 두고, 꼭 다룰 항목 둘이 그 원문을 가리킨다.
+#   · 두 항목을 빼면 G4 커버리지가 3/5 = 0.6 < 0.8 로 거부
+#   · 넣으면 인용이 원문에 없으니 G3 가 거부
+# 모델이 무엇을 쓰든 검수를 통과하지 못해서, 실제 모델로 실행해도 결론(세 번 거부 → needs_human)이 정해진다.
+# 주의: sources/ 의 원문은 전부 지어낸 자료다.
+
+expect: reject
+
+sources:
+  "arxiv:2601.12345:abstract": sources/week-01/arxiv-2601.12345.abstract.txt
+  "model:acme/lumen-3:card": sources/week-01/model-acme-lumen-3.card.md
+  "release:vllm:v0.9.0": sources/week-01/release-vllm-v0.9.0.md
+  "notes:team:week-02": sources/week-02/empty-notes.md
+
+required:
+  - id: lumen3-mmlu-score
+    kind: benchmark
+    cite: "model:acme/lumen-3:card"
+    find: "MMLU 88.2"
+  - id: paper-12345-method
+    kind: finding
+    cite: "arxiv:2601.12345:abstract"
+    find: "staged deliberation"
+  - id: vllm-breaking-api
+    kind: limitation
+    cite: "release:vllm:v0.9.0"
+    find: "sampling_params"
+  - id: team-notes-decision
+    kind: finding
+    cite: "notes:team:week-02"
+    find: "decided"
+  - id: team-notes-risk
+    kind: limitation
+    cite: "notes:team:week-02"
+    find: "risk"

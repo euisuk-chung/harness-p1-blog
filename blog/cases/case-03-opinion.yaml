@@ -1,0 +1,43 @@
+# case-03-opinion — 전부 의견으로 라벨링해 출처 요구를 피해 가는 경우. G5 가 잡아야 한다.
+#
+# 자료와 필수 항목은 case-01 과 같다. 다른 것은 AI 가 낸 결과물뿐이다.
+# 같은 입력에 다른 실패 양상 — 그게 이 케이스의 목적이다.
+
+# 이 케이스에 기대하는 판정.
+#   pass   — 검사를 통과해야 한다
+#   reject — 검사가 거부해야 한다 (거부하면 검사기가 옳게 동작한 것)
+expect: reject   # 출처 요구를 회피했다 — 거부해야 한다
+
+sources:
+  "arxiv:2601.12345:abstract": sources/week-01/arxiv-2601.12345.abstract.txt
+  "arxiv:2601.67890:abstract": sources/week-01/arxiv-2601.67890.abstract.txt
+  "model:acme/lumen-3:card": sources/week-01/model-acme-lumen-3.card.md
+  "release:vllm:v0.9.0": sources/week-01/release-vllm-v0.9.0.md
+
+# 개수를 바꾸면 커버리지 기준(0.8)의 의미가 바뀐다.
+# 3개면 나올 수 있는 값이 0/0.33/0.67/1.0 뿐이라 "0.8 이상"이 사실상 "전부"가 된다.
+required:
+  - id: lumen3-mmlu-score
+    kind: benchmark
+    cite: "model:acme/lumen-3:card"
+    find: "MMLU 88.2"
+
+  - id: lumen3-context-window
+    kind: capability
+    cite: "model:acme/lumen-3:card"
+    find: "400K"
+
+  - id: paper-12345-method
+    kind: finding
+    cite: "arxiv:2601.12345:abstract"
+    find: "staged deliberation"
+
+  - id: vllm-breaking-api
+    kind: limitation
+    cite: "release:vllm:v0.9.0"
+    find: "sampling_params"
+
+  - id: paper-67890-caveat
+    kind: limitation
+    cite: "arxiv:2601.67890:abstract"
+    find: "not comparable across papers"

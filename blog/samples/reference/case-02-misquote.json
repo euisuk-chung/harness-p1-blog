@@ -1,0 +1,42 @@
+{
+  "_note": "표본 결과물 — 출처는 실재하는데 인용이 틀린 경우.",
+  "_expect": "인용 검사(G3)가 잡아야 한다. 출처 존재 검사(G2)는 통과한다 — 출처가 진짜이므로. 그 대비가 목적이다.",
+  "claims": [
+    {
+      "text": "Lumen-3는 MMLU 89.2를 기록했다",
+      "kind": "benchmark",
+      "source_id": "model:acme/lumen-3:card",
+      "quote": "Lumen-3 achieves 89.2 on MMLU"
+    },
+    {
+      "text": "Lumen-3는 400K 토큰 컨텍스트를 지원한다",
+      "kind": "capability",
+      "source_id": "model:acme/lumen-3:card",
+      "quote": "The model supports a 400K token context window"
+    },
+    {
+      "text": "staged deliberation은 계획 생성과 실행을 분리해 중간 산출물을 명시적으로 남긴다",
+      "kind": "finding",
+      "source_id": "arxiv:2601.12345:abstract",
+      "quote": "staged deliberation, a method that separates plan generation from plan execution using an explicit intermediate artifact"
+    },
+    {
+      "text": "staged deliberation은 토큰 비용을 절반으로 줄인다",
+      "kind": "benchmark",
+      "source_id": "arxiv:2601.12345:abstract",
+      "quote": "reducing token cost by 50 percent compared to self-consistency decoding"
+    },
+    {
+      "text": "vLLM 0.9.0은 generate()에 sampling_params 딕셔너리를 더 받지 않는다",
+      "kind": "limitation",
+      "source_id": "release:vllm:v0.9.0",
+      "quote": "no longer accepts a `sampling_params` dict"
+    },
+    {
+      "text": "도구 설명이 바뀌면 점수가 흔들리므로 tool-use 점수는 논문 간 비교가 어렵다",
+      "kind": "limitation",
+      "source_id": "arxiv:2601.67890:abstract",
+      "quote": "not comparable across papers unless the exact tool schema is published"
+    }
+  ]
+}

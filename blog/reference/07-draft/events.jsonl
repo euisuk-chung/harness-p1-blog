@@ -1,0 +1,14 @@
+{"n": 1, "event": "triggered", "trigger": "manual:case-01-standard", "case": "case-01-standard"}
+{"n": 2, "event": "step", "step": "collect", "signal": 0, "note": "collect: 원문 4건, 꼭 다룰 항목 5개"}
+{"n": 3, "event": "need", "step": "draft", "visit": 1}
+{"n": 4, "event": "tool", "tool": "Agent"}
+{"n": 5, "event": "tool", "tool": "Read"}
+{"n": 6, "event": "tool", "tool": "Read"}
+{"n": 7, "event": "tool", "tool": "Read"}
+{"n": 8, "event": "tool", "tool": "Read"}
+{"n": 9, "event": "tool", "tool": "Read"}
+{"n": 10, "event": "tool", "tool": "Write"}
+{"n": 11, "event": "step", "step": "draft", "signal": 0, "note": "draft.json 27c7d1bc0546"}
+{"n": 12, "event": "step", "step": "review", "signal": 0, "note": "G1 pass · G2 pass · G3 pass · G4 pass · G5 pass"}
+{"n": 13, "event": "step", "step": "deliver", "signal": 0, "note": "render: drafts/case-01-standard-1.md"}
+{"n": 14, "event": "finished", "terminal": "published", "reason": ""}

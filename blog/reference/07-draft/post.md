@@ -1,0 +1,27 @@
+# 이번 주 정리 — case-01-standard-1
+
+## 밝혀진 것
+
+- 이 논문은 계획 생성과 실행을 분리하는 staged deliberation 기법을 제안한다.
+  - 출처 `arxiv:2601.12345:abstract` — "We introduce staged deliberation, a method that separates plan generation from plan execution using an explicit intermediate artifact."
+
+## 수치
+
+- Lumen-3는 MMLU에서 88.2점을 기록했다.
+  - 출처 `model:acme/lumen-3:card` — "Lumen-3 achieves 88.2 on MMLU and 71.4 on GPQA-Diamond."
+
+## 할 수 있는 것
+
+- Lumen-3는 400K 토큰 컨텍스트 윈도우를 지원한다.
+  - 출처 `model:acme/lumen-3:card` — "The model supports a 400K token context window."
+
+## 주의할 것
+
+- vLLM v0.9.0에서는 generate() 호출 시 sampling_params 딕셔너리를 더 이상 받지 않는다.
+  - 출처 `release:vllm:v0.9.0` — "The `generate()` entrypoint no longer accepts a `sampling_params` dict."
+- 이 논문은 도구 스키마가 함께 공개되지 않으면 논문 간 tool-use 점수를 비교할 수 없다고 지적한다.
+  - 출처 `arxiv:2601.67890:abstract` — "We therefore caution that reported tool-use scores are not comparable across papers unless the exact tool schema is published alongside the result."
+
+## 의견
+
+- 벤치마크 수치만 보고 모델을 고르기보다는 실제 워크로드로 재현해 보는 편이 안전하다.

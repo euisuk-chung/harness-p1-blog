@@ -1,0 +1,36 @@
+{
+  "id": "case-01-standard-1",
+  "case": "case-01-standard",
+  "trigger": "manual:case-01-standard",
+  "at": "published",
+  "visits": {
+    "draft": 1
+  },
+  "history": [
+    {
+      "step": "collect",
+      "signal": 0,
+      "note": "collect: 원문 4건, 꼭 다룰 항목 5개"
+    },
+    {
+      "step": "draft",
+      "signal": 0,
+      "note": "draft.json 27c7d1bc0546"
+    },
+    {
+      "step": "review",
+      "signal": 0,
+      "note": "G1 pass · G2 pass · G3 pass · G4 pass · G5 pass"
+    },
+    {
+      "step": "deliver",
+      "signal": 0,
+      "note": "render: drafts/case-01-standard-1.md"
+    }
+  ],
+  "tool_calls": 7,
+  "terminal": "published",
+  "reason": "",
+  "pending": null,
+  "draft_seen": "27c7d1bc0546:1790532079498667541"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "2026-W37",
+  "case": "case-04-empty-source",
+  "trigger": "schedule:weekly:2026-W37",
+  "at": "needs_human",
+  "visits": {
+    "draft": 3
+  },
+  "history": [
+    {
+      "step": "collect",
+      "signal": 0,
+      "note": "collect: 원문 4건, 꼭 다룰 항목 5개"
+    },
+    {
+      "step": "draft",
+      "signal": 0,
+      "note": "draft.json c259b6344f7e"
+    },
+    {
+      "step": "review",
+      "signal": 1,
+      "note": "review: G4 rejected — missed: lumen3-mmlu-score, team-notes-decision, team-notes-risk"
+    },
+    {
+      "step": "draft",
+      "signal": 0,
+      "note": "draft.json 252c699a39d8"
+    },
+    {
+      "step": "review",
+      "signal": 1,
+      "note": "review: G4 rejected — missed: team-notes-decision, team-notes-risk"
+    },
+    {
+      "step": "draft",
+      "signal": 0,
+      "note": "draft.json 252c699a39d8"
+    },
+    {
+      "step": "review",
+      "signal": 1,
+      "note": "review: G4 rejected — missed: team-notes-decision, team-notes-risk"
+    }
+  ],
+  "tool_calls": 24,
+  "terminal": "needs_human",
+  "reason": "'draft' 를 3번 했는데도 안 됐다",
+  "pending": null,
+  "draft_seen": "252c699a39d8:1790535418654549297",
+  "last_reject": "review: G4 rejected — missed: team-notes-decision, team-notes-risk"
+}

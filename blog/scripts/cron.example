@@ -1,0 +1,6 @@
+# 블로그 — 매주 월요일 9시, 이번 주 요청 하나. 로그는 이 프로젝트의 logs/ 에.
+# crontab -e 에 넣는다. 경로는 여러분 저장소 위치로 바꾼다.
+#
+# 본 에이전트 모델: 구독에 맞춰 한 줄. Pro 는 sonnet, Max 는 opus. 없으면 scripts/request.sh 가 sonnet 을 쓴다.
+ANTHROPIC_MODEL=sonnet
+0 9 * * 1  cd ~/hackers/my-blog-agent/blog && mkdir -p logs && scripts/request.sh --pr >> logs/cron.log 2>&1

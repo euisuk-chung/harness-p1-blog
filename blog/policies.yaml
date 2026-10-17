@@ -1,0 +1,34 @@
+# 정책 — Claude(본 세션과 drafter)가 무엇을 써도 되고 무엇은 안 되는지. guard.py 가 도구를 부르기 전마다 읽는다.
+#
+# 목록 밖의 것은 막는다(허용 목록). 모르는 도구가 새로 생겨도 막히게 하려는 것이다.
+# settings.json 의 permissions 도 같은 것을 한 번 더 막는다 — 한 곳이 조용히 꺼져도 다른 한 곳이 남게.
+
+# 쓸 수 있는 도구. 하위 에이전트(Agent)는 백그라운드로 띄우지 못하게 guard.py 가 따로 막는다.
+allow_tools:
+  - Read
+  - Write
+  - Agent
+  - Task
+  - Bash
+
+# 파일을 쓸 수 있는 곳. 이 밖의 Write·Edit 은 막는다.
+# 요청 폴더의 상태 파일(state.json·events.jsonl)은 차단 장치만 쓴다 — Claude 가 "통과" 로 고치지 못하게.
+writable:
+  - requests/*/draft.json
+
+# Bash 명령에 이 글자가 들어 있으면 막는다(대소문자 무시).
+deny_commands:
+  - "curl "
+  - "wget "
+  - "rm -rf"
+  - "--no-verify"
+  - "sudo "
+
+# Bash 로 실행해도 되는 명령의 머리. 이 밖은 막는다.
+allow_commands:
+  - "uv run python scripts/open_request.py"
+  - "ls"
+
+# 한 요청 안에서 도구를 부를 수 있는 횟수(본 세션과 drafter 를 합쳐). 넘으면 막고, 흐름은 failed 로 끝난다. (12차시)
+# drafter 한 번이 원문 넷·요청서를 읽고 초안을 쓰는 데 7~8번 — 작성 세 번이 들어갈 만큼으로 잡았다.
+max_tool_calls: 40

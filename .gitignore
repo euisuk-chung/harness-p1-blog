@@ -1,0 +1,25 @@
+# 실행하면 생기는 것 — 사람마다 다르고 매번 다르다
+# (요청 폴더·로그는 프로젝트마다 제 .gitignore 에도 있다. drafts/ 는 PR 로 올리는 초안이라 무시하지 않는다)
+requests/
+logs/
+claims/
+outbox/
+assignments/
+__pycache__/
+*.py[cod]
+
+# 파이썬 가상환경
+.venv/
+venv/
+
+# 15차시처럼 폴더를 통째로 복사해 값을 바꿔 보는 사본
+*-copy/
+
+# 편집기
+.vscode/
+.idea/
+.DS_Store
+
+# 프로젝트 2·3 완성 코드 — 따로 있는 저장소를 이 자리로 clone 한다
+/alert/
+/triage/
