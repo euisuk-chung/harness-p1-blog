@@ -45,6 +45,8 @@ PROTECTED_DIRS = {
     "cases/sources": "자료 원문. 여기를 고칠 수 있으면 인용 검사(G3)가 무의미해진다",
     "samples/reference": "회귀 비교의 고정 입력. 바꾸면 어제와 비교할 수 없다",
     ".claude": "차단 장치 자신. 여기를 고칠 수 있으면 나머지 보호가 전부 무의미하다",
+    # 12차시에 더한 한 줄 — 작성 담당이 늘 지킬 규칙(스킬). 7차시에 Claude 와 지은 뒤 여기서 잠근다.
+    ".claude/skills": "작성 담당이 늘 따를 지시. 여기를 고칠 수 있으면 대화 창의 AI 가 그 지시를 스스로 바꿀 수 있다",
 }
 BUILDABLE = {"commands", "agents", "skills"}   # .claude/ 안에서 막지 않는 하위 폴더
 
