@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "blog claims",
+  "description": "모델이 내는 것은 글이 아니라 claim 배열이다. 사람이 읽는 포스트는 이 JSON에서 렌더링한다.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claims"
+  ],
+  "properties": {
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "kind",
+          "source_id",
+          "quote"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "kind": {
+            "enum": [
+              "finding",
+              "benchmark",
+              "capability",
+              "limitation",
+              "opinion"
+            ]
+          },
+          "source_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "arxiv:<id>:abstract | model:<org/name>:card | release:<repo>:<tag>. opinion 이면 null 이다.",
+            "pattern": "^(arxiv:[^:]+:[a-z]+|model:[^:]+:[a-z]+|release:[^:]+:[^:]+)$"
+          },
+          "quote": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 8,
+            "maxLength": 400,
+            "description": "source_id 원문에 그대로 있는 span. 공백만 정규화해 비교한다. opinion 이면 null 이다."
+          }
+        },
+        "allOf": [
+          {
+            "$comment": "opinion 이 아니면 source_id 와 quote 가 null 이면 안 된다.",
+            "if": {
+              "properties": {
+                "kind": {
+                  "not": {
+                    "const": "opinion"
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "source_id": {
+                  "type": "string"
+                },
+                "quote": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "$comment": "opinion 은 출처를 달 수 없다. 의견을 근거로 포장하는 것을 막는다.",
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "opinion"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "source_id": {
+                  "type": "null"
+                },
+                "quote": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$comment": "**검사하는 계약.** schema.json(보내는 계약)보다 엄격하다. Codex 가 allOf·if·not 을 못 받아서 나눴다 — agent_harness/schema.py 머리말."
+}
