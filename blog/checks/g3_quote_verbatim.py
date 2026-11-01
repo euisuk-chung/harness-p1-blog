@@ -10,9 +10,12 @@
     PDF/HTML 에서 긁어온 초록은 줄바꿈이 섞여 있어, 이걸 안 하면 정답인데 실패한다.
   - **대소문자는 유지한다.** 벤치마크명·고유명사가 중요하다.
     'MMLU 88.2' 와 'mmlu 88.2' 를 같다고 보면 가드레일이 약해진다.
+  - 유니코드를 NFC 로 모은다. 맥에서 저장한 한글은 자모가 나뉜(NFD) 채로 남기도 해서,
+    눈에는 같은 문장인데 글자 코드가 달라 정답인데 실패한다. (case-06-korean-notes)
 """
 
 import re
+import unicodedata
 
 from . import NEEDS_SOURCE, GuardResult
 
@@ -20,8 +23,8 @@ _WS = re.compile(r"\s+")
 
 
 def normalize(text: str) -> str:
-    """공백만 접는다. 대소문자·구두점은 건드리지 않는다."""
-    return _WS.sub(" ", text).strip()
+    """글자 코드를 NFC 로 모으고 공백만 접는다. 대소문자·구두점은 건드리지 않는다."""
+    return _WS.sub(" ", unicodedata.normalize("NFC", text)).strip()
 
 
 def check(claims: list[dict], case) -> GuardResult:

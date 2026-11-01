@@ -12,7 +12,7 @@ Claude Code 는 연 폴더의 `.claude/` 만 읽는다 — 다른 폴더에서 �
 | 작성 | `draft` | 하위 에이전트 `drafter`(`.claude/agents/drafter.md`, 도구 Read·Write) 가 `requests/<id>/draft.json` 을 쓴다 |
 | 검수 | `review` | `review.py --request <id>` — 검사 다섯 G1~G5. 모델 없음 |
 
-- 명령: `/draft <케이스>`(작성 한 단계)
+- 명령: `/draft <케이스>`(작성 한 단계) · `/improve`(검사 파일을 고치는 개선 담당 `improver` — 흐름 밖, 사람이 부를 때만)
 - 차단 장치(`.claude/settings.json`): `protect_sources.py`(원문 보호) · `guard.py`(막기 — `policies.yaml`) · `run_review.py`(초안이 쓰이면 검수) · `next_step.py`(멈추려 할 때 다음 단계 — `graph.yaml`) · `show_status.py`(새 세션에 진행표)
 - 흐름도 `graph.yaml` · 정책 `policies.yaml`
 
