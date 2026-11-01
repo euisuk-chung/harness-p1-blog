@@ -1,0 +1,21 @@
+{
+  "provenance": "MOCK ONLY: 이 과정에서 직접 만든 설명용 기록입니다. 실제 모델·발송·성능 실행 결과가 아닙니다.",
+  "current": {"now": "2026-01-02T12:00:00+00:00", "max_age_hours": 24, "request_id": "mock-blog-001", "next_step": "review", "source": "설명용 블로그 자료: 검수한 글은 2건입니다.\n", "code": "def next_step():\n    return \"review\"\n"},
+  "handoffs": {
+    "normal": {"request_id": "mock-blog-001", "created_at": "2026-01-02T09:00:00+00:00", "next_step": "review", "source_sha256": "e522c3b67c35241d96af6e9df98dca67bb01da92eea9ab6e1e3c600f4b3aaedb", "code_sha256": "efcae71c98701130515f6ed5d2a3f7721e20d44695f1149cfc3228bdeec51d36", "artifact_path": "artifacts/draft.json", "artifact_sha256": "7e78517fca581a6cf4c280d5dce11017d9bf881b0e4086e4eca5b547d71401c0"},
+    "stale": {"request_id": "mock-blog-001", "created_at": "2025-12-30T09:00:00+00:00", "next_step": "review", "source_sha256": "e522c3b67c35241d96af6e9df98dca67bb01da92eea9ab6e1e3c600f4b3aaedb", "code_sha256": "efcae71c98701130515f6ed5d2a3f7721e20d44695f1149cfc3228bdeec51d36", "artifact_path": "artifacts/draft.json", "artifact_sha256": "7e78517fca581a6cf4c280d5dce11017d9bf881b0e4086e4eca5b547d71401c0"},
+    "missing": {"request_id": "mock-blog-001", "created_at": "2026-01-02T09:00:00+00:00", "next_step": "review", "code_sha256": "efcae71c98701130515f6ed5d2a3f7721e20d44695f1149cfc3228bdeec51d36", "artifact_path": "artifacts/absent-draft.json", "artifact_sha256": "7e78517fca581a6cf4c280d5dce11017d9bf881b0e4086e4eca5b547d71401c0", "source_sha256": "e522c3b67c35241d96af6e9df98dca67bb01da92eea9ab6e1e3c600f4b3aaedb"},
+    "wrong-code-version": {"request_id": "mock-blog-001", "created_at": "2026-01-02T09:00:00+00:00", "next_step": "review", "source_sha256": "e522c3b67c35241d96af6e9df98dca67bb01da92eea9ab6e1e3c600f4b3aaedb", "code_sha256": "bde487e5b9ca8c66c0bfb85cde0e804bddccc90387ba4614b37193113f391f7e", "artifact_path": "artifacts/draft.json", "artifact_sha256": "7e78517fca581a6cf4c280d5dce11017d9bf881b0e4086e4eca5b547d71401c0"}
+  },
+  "evidence": {
+    "status": {"label": "pass", "source": "설명용 블로그 자료: 검수한 글은 2건입니다.\n", "draft_quote": "검수한 글은 3건입니다."},
+    "deliveries": [
+      {"id": "test-only", "mode": "test", "transport": "fake", "response_status": 202, "recipient_receipt": null},
+      {"id": "live-claim", "mode": "live", "transport": "http", "response_status": 202, "recipient_receipt": null}
+    ],
+    "benchmarks": [
+      {"id": "hardcoded", "reported_percent": 40, "before_ms": [], "after_ms": []},
+      {"id": "synthetic-samples", "reported_percent": 40, "before_ms": [100, 120], "after_ms": [90, 110]}
+    ]
+  }
+}

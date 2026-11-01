@@ -1,0 +1,42 @@
+{
+  "_note": "표본 결과물 — 어려운 항목을 전부 의견으로 돌려 출처 요구를 피했다.",
+  "_expect": "의견 비율(G5)과 커버리지(G4)가 잡아야 한다. G1~G3 는 전부 통과한다 — 그래서 G5 가 있다.",
+  "claims": [
+    {
+      "text": "Lumen-3는 MMLU 88.2를 기록했다",
+      "kind": "benchmark",
+      "source_id": "model:acme/lumen-3:card",
+      "quote": "Lumen-3 achieves 88.2 on MMLU"
+    },
+    {
+      "text": "컨텍스트 창은 꽤 넓은 편으로 보인다",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    },
+    {
+      "text": "staged deliberation은 방법론적으로 흥미로운 접근이다",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    },
+    {
+      "text": "vLLM 업그레이드는 조심해서 하는 게 좋겠다",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    },
+    {
+      "text": "tool-use 벤치마크는 너무 믿지 않는 게 좋다",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    },
+    {
+      "text": "전반적으로 이번 주는 추론 모델 쪽 소식이 많았다",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    }
+  ]
+}

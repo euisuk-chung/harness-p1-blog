@@ -1,0 +1,10 @@
+[SYNTHETIC FIXTURE - not a real paper]
+
+Title: On the Fragility of Tool-Use Benchmarks
+
+Abstract:
+Tool-use benchmarks are increasingly used to rank agent systems. We show that
+small changes to tool descriptions shift measured accuracy by up to 12 points
+without any change to the underlying model. We therefore caution that reported
+tool-use scores are not comparable across papers unless the exact tool schema is
+published alongside the result.

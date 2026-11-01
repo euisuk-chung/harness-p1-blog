@@ -1,0 +1,40 @@
+{
+  "sources": {
+    "arxiv:2601.12345:abstract": "arxiv-2601.12345.abstract.txt",
+    "model:acme/lumen-3:card": "model-acme-lumen-3.card.md",
+    "release:vllm:v0.9.0": "release-vllm-v0.9.0.md",
+    "notes:team:week-02": "empty-notes.md"
+  },
+  "required": [
+    {
+      "id": "lumen3-mmlu-score",
+      "kind": "benchmark",
+      "cite": "model:acme/lumen-3:card",
+      "about": "MMLU 88.2"
+    },
+    {
+      "id": "paper-12345-method",
+      "kind": "finding",
+      "cite": "arxiv:2601.12345:abstract",
+      "about": "staged deliberation"
+    },
+    {
+      "id": "vllm-breaking-api",
+      "kind": "limitation",
+      "cite": "release:vllm:v0.9.0",
+      "about": "sampling_params"
+    },
+    {
+      "id": "team-notes-decision",
+      "kind": "finding",
+      "cite": "notes:team:week-02",
+      "about": "decided"
+    },
+    {
+      "id": "team-notes-risk",
+      "kind": "limitation",
+      "cite": "notes:team:week-02",
+      "about": "risk"
+    }
+  ]
+}

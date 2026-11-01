@@ -1,0 +1,36 @@
+{
+  "id": "2026-W36",
+  "case": "case-01-standard",
+  "trigger": "schedule:weekly:2026-W36",
+  "at": "needs_human",
+  "visits": {
+    "draft": 1
+  },
+  "history": [
+    {
+      "step": "collect",
+      "signal": 0,
+      "note": "collect: 원문 4건, 꼭 다룰 항목 5개"
+    },
+    {
+      "step": "draft",
+      "signal": 0,
+      "note": "draft.json d1747435a881"
+    },
+    {
+      "step": "review",
+      "signal": 0,
+      "note": "G1 pass · G2 pass · G3 pass · G4 pass · G5 pass"
+    },
+    {
+      "step": "approve",
+      "signal": 3,
+      "note": "approve: drafts/2026-W36.md 를 만들고 승인을 기다린다 (PR 은 --pr 일 때 연다)"
+    }
+  ],
+  "tool_calls": 7,
+  "terminal": "needs_human",
+  "reason": "",
+  "pending": null,
+  "draft_seen": "d1747435a881:1790530485238723481"
+}

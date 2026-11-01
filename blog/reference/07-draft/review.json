@@ -1,0 +1,24 @@
+{
+  "G1": {
+    "pass": true,
+    "detail": []
+  },
+  "G2": {
+    "pass": true,
+    "detail": []
+  },
+  "G3": {
+    "pass": true,
+    "detail": []
+  },
+  "G4": {
+    "pass": true,
+    "detail": [
+      "missed: lumen3-mmlu-score"
+    ]
+  },
+  "G5": {
+    "pass": true,
+    "detail": []
+  }
+}

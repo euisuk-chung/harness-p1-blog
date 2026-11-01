@@ -1,0 +1,12 @@
+[SYNTHETIC FIXTURE - not a real paper]
+
+Title: Staged Deliberation for Long-Horizon Reasoning
+
+Abstract:
+We introduce staged deliberation, a method that separates plan generation from
+plan execution using an explicit intermediate artifact. Rather than emitting a
+single chain of thought, the model writes a structured plan, revises it once
+against a checklist, and only then executes. On held-out long-horizon tasks the
+method achieves state-of-the-art on English benchmarks while reducing token cost
+by 31 percent compared to self-consistency decoding. We do not evaluate on
+non-English tasks and leave multilingual analysis to future work.

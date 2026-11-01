@@ -1,0 +1,40 @@
+{
+  "claims": [
+    {
+      "text": "Lumen-3는 MMLU에서 88.2점을 기록했다.",
+      "kind": "benchmark",
+      "source_id": "model:acme/lumen-3:card",
+      "quote": "Lumen-3 achieves 88.2 on MMLU and 71.4 on GPQA-Diamond."
+    },
+    {
+      "text": "Lumen-3는 최대 400K 토큰의 컨텍스트 윈도우를 지원한다.",
+      "kind": "capability",
+      "source_id": "model:acme/lumen-3:card",
+      "quote": "The model supports a 400K token context window."
+    },
+    {
+      "text": "staged deliberation은 계획 생성과 계획 실행을 명시적인 중간 산출물로 분리하는 방법이다.",
+      "kind": "finding",
+      "source_id": "arxiv:2601.12345:abstract",
+      "quote": "We introduce staged deliberation, a method that separates plan generation from plan execution using an explicit intermediate artifact."
+    },
+    {
+      "text": "vLLM v0.9.0부터 generate() 함수는 sampling_params 딕셔너리를 더 이상 받지 않아 기존 호출부가 깨질 수 있다.",
+      "kind": "limitation",
+      "source_id": "release:vllm:v0.9.0",
+      "quote": "The `generate()` entrypoint no longer accepts a `sampling_params` dict."
+    },
+    {
+      "text": "도구 스키마가 함께 공개되지 않으면 논문 간 tool-use 점수는 서로 비교할 수 없다.",
+      "kind": "limitation",
+      "source_id": "arxiv:2601.67890:abstract",
+      "quote": "We therefore caution that reported tool-use scores are not comparable across papers unless the exact tool schema is published alongside the result."
+    },
+    {
+      "text": "벤치마크 수치만 보고 모델을 고르기보다 실제 워크로드에서 재현되는지 함께 확인하는 습관이 필요해 보인다.",
+      "kind": "opinion",
+      "source_id": null,
+      "quote": null
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{"n": 1, "event": "triggered", "trigger": "schedule:weekly:2026-W36", "case": "case-01-standard"}
+{"n": 2, "event": "step", "step": "collect", "signal": 0, "note": "collect: 원문 4건, 꼭 다룰 항목 5개"}
+{"n": 3, "event": "need", "step": "draft", "visit": 1}
+{"n": 4, "event": "tool", "tool": "Agent"}
+{"n": 5, "event": "tool", "tool": "Read"}
+{"n": 6, "event": "tool", "tool": "Read"}
+{"n": 7, "event": "tool", "tool": "Read"}
+{"n": 8, "event": "tool", "tool": "Read"}
+{"n": 9, "event": "tool", "tool": "Read"}
+{"n": 10, "event": "tool", "tool": "Write"}
+{"n": 11, "event": "step", "step": "draft", "signal": 0, "note": "draft.json d1747435a881"}
+{"n": 12, "event": "step", "step": "review", "signal": 0, "note": "G1 pass · G2 pass · G3 pass · G4 pass · G5 pass"}
+{"n": 13, "event": "step", "step": "approve", "signal": 3, "note": "approve: drafts/2026-W36.md 를 만들고 승인을 기다린다 (PR 은 --pr 일 때 연다)"}
+{"n": 14, "event": "finished", "terminal": "needs_human", "reason": ""}
