@@ -12,9 +12,9 @@
 #
 # 키를 `on:` 이라고 쓰지 않는다 — YAML 에서 on 은 true 로 읽힌다. 그래서 next: 다.
 #
-# [첫 판]
-# 되돌아가는 길도 사람 자리도 없다. 검수가 거부하면 그대로 실패(failed),
-# 통과하면 바로 글을 만들어 끝(published).  → 되돌아가기와 승인은 뒤의 판에서 더한다
+# [되돌아가기를 더한 판]
+# 검수가 거부하면 작성으로 되돌아가고, 세 번 해도 안 되면 사람에게.
+# 글을 내보내기 전에 사람을 기다리는 자리는 아직 없다.  → 승인은 다음 판에서 더한다
 
 start: collect
 
@@ -30,6 +30,8 @@ steps:
     by: drafter
     ask: "요청 {id} 의 블로그 초안을 쓰게 하세요. 읽을 것 requests/{id}/sources/ 의 원문과 requests/{id}/brief.json, 쓸 곳 requests/{id}/draft.json."
     retry_hint: "원문에 없는 문장을 인용하거나 원문을 고쳐 통과시키려 하지 마세요. 못 고친 곳은 그대로 둔 채 초안을 다시 쓰세요 — 그래도 거부되면 사람에게 넘어가는 것이 맞는 결과입니다."
+    max_visits: 3
+    when_exhausted: needs_human
     next:
       0: review
 
@@ -38,7 +40,7 @@ steps:
     run: uv run python review.py --request {id}
     next:
       0: deliver
-      1: failed
+      1: draft
       2: failed
 
   deliver:

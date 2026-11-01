@@ -13,7 +13,7 @@ Claude Code 는 연 폴더의 `.claude/` 만 읽는다 — 다른 폴더에서 �
 | 검수 | `review` | `review.py --request <id>` — 검사 다섯 G1~G5. 모델 없음 |
 
 - 명령: `/draft <케이스>`(작성 한 단계)
-- 차단 장치(`.claude/settings.json`): `protect_sources.py`(원문 보호) · `guard.py`(막기 — `policies.yaml`) · `run_review.py`(초안이 쓰이면 검수) · `show_status.py`(새 세션에 진행표)
+- 차단 장치(`.claude/settings.json`): `protect_sources.py`(원문 보호) · `guard.py`(막기 — `policies.yaml`) · `run_review.py`(초안이 쓰이면 검수) · `next_step.py`(멈추려 할 때 다음 단계 — `graph.yaml`) · `show_status.py`(새 세션에 진행표)
 - 흐름도 `graph.yaml` · 정책 `policies.yaml`
 
 ## 지킬 것
