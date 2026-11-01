@@ -10,6 +10,7 @@ Claude Code 는 연 폴더의 `.claude/` 만 읽는다 — 다른 폴더에서 �
 | 요청 | `request` | cron 이 주 1회 `scripts/request.sh` 를 부른다. 요청 id 는 주차(`2026-W36`), 요청 폴더 `requests/<요청 id>/`. |
 | 검수 | `review` | `review.py --request <id>` — 검사 다섯 G1~G5. 모델 없음 |
 
+- 차단 장치(`.claude/settings.json`): `protect_sources.py`(원문 보호)
 - 흐름도 `graph.yaml` · 정책 `policies.yaml`
 
 ## 지킬 것
